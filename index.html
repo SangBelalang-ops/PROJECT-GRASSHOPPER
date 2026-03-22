@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALVIN MUSIC | PORTFOLIO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { background: #0b0f19; color: #e5e7eb; font-family: 'Inter', sans-serif; }
+        .music-card { background: rgba(31, 41, 55, 0.5); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
+        .music-card:hover { transform: translateY(-5px); border-color: #3b82f6; }
+        .lyrics-box { height: 200px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #3b82f6 #1f2937; }
+        audio::-webkit-media-controls-panel { background-color: #3b82f6; }
+    </style>
+</head>
+<body class="pb-20">
+
+    <nav class="p-6 flex justify-between items-center max-w-6xl mx-auto">
+        <h1 class="text-2xl font-black tracking-tighter text-blue-500">ALVIN<span class="text-white">PROD.</span></h1>
+        <div class="space-x-6 text-sm font-bold uppercase tracking-widest">
+            <a href="#tracks" class="hover:text-blue-400">Tracks</a>
+            <a href="https://wa.me/628123456789" class="bg-blue-600 px-4 py-2 rounded-full">Hire Me</a>
+        </div>
+    </nav>
+
+    <header class="py-16 text-center px-4">
+        <div class="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center text-4xl shadow-xl">🎹</div>
+        <h2 class="text-4xl md:text-6xl font-extrabold mb-2">SOUND PORTFOLIO</h2>
+        <p class="text-gray-400">Produser Musik | Digital Composer | Future Developer</p>
+    </header>
+
+    <main id="tracks" class="max-w-4xl mx-auto px-6 space-y-12">
+        
+        <div class="music-card p-8 rounded-3xl">
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="flex-1">
+                    <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Latest Release</span>
+                    <h3 class="text-3xl font-bold mt-2 mb-4">Project "72"</h3>
+                    <p class="text-gray-400 mb-6 text-sm leading-relaxed">
+                        Sebuah komposisi eksperimental yang menggabungkan elemen lo-fi dengan synth modern. Dibuat menggunakan FL Studio 21.
+                    </p>
+                    
+                    <div class="bg-gray-800 p-4 rounded-2xl mb-4">
+                        <p class="text-xs mb-2 text-gray-400"><i class="fas fa-play mr-2"></i> Preview Track</p>
+                        <audio controls class="w-full">
+                            <source src="track1.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+
+                <div class="flex-1">
+                    <h4 class="font-bold mb-3 flex items-center"><i class="fas fa-quote-left mr-2 text-blue-500"></i> Lirik / Notes</h4>
+                    <div class="lyrics-box bg-gray-900/50 p-4 rounded-xl text-sm text-gray-300 italic">
+                        {verse 1}
+seems like youre taking a chance
+But, losing all your plans
+while, everyones doing fine
+you're left behind 
+its like youre Not deserve it 
+try hard but never make it
+Hold on now,
+don't you bow, 
+you're strong e-nough to face it.
+
+Since all I want is something more
+Than numbers in a limit
+What I know, you dont know
+not like other people
+Choosing to be just fools
+like empty bodies
+a system telling lies and fables
+
+{pre chorus}
+All I know, I know it
+But you won't, admit it
+just not yet
+Because we'll own the skyyyyyyyyyyyyyyyy
+
+
+
+[Chorus]
+No more li-mits, no more lies
+Watch us light-ing up the skies
+Through the dark, we find the way
+This is our ASA!
+
+No more li-mits, no more lies
+Watch us light-ing up the skies
+Through the dark, we find the way
+This is our ASA!
+
+{verse 2}
+
+timeeeee.......
+is it lonely
+break away now , stop sharing problems
+the other time you there
+but anytime u bear
+like anybody waking up
+reaching at tonight
+is it like feel real 
+is it like u are here
+no other , now clear
+come so louddd
+
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaa
+aaaaaaaaaa
+aaaaaaaaaaaaa
+
+
+Since all I want is something more
+Than numbers in a limit
+What I know, you don't know
+not like other people
+Choosing to be just fools
+like empty bodies
+a system telling lying fable
+
+{pre chorus}
+All I know, I know it
+But you won't, admit it
+just not yet
+Because we'll own the skyyyyyyyyyyyyyyyy
+
+[Chorus]
+No more li-mits, no more lies
+Watch us lighting up the skies
+We’re not fools, we’re not the same
+Not like be-fore!
+
+[Post-Chorus]
+anybody  timeeeeeeeee
+tell me what u win
+ooooooo
+anda anybody wanna chase
+tell em ,  i never let get better
+ooooooo
+
+[Bridge]
+masih cari
+
+[Chorus]
+No more li-mits, no more lies (clap )
+Watch us light-ing up the skies (clap )
+We’re not fools, we’re not the same (clap )
+Not like be-fore! (clap )
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-2 border-dashed border-gray-700 p-10 rounded-3xl text-center">
+            <i class="fas fa-cloud-upload-alt text-4xl text-gray-600 mb-4"></i>
+            <h4 class="text-xl font-bold">Mau Tambah Track?</h4>
+            <p class="text-gray-500 text-sm mt-2">Untuk menambah lagu baru, cukup masukkan file MP3 ke repository GitHub kamu dan duplikat kode 'Track' di atas.</p>
+        </div>
+
+    </main>
+
+    <footer class="mt-20 py-10 border-t border-gray-800 text-center text-gray-500 text-xs">
+        <p>&copy; 2026 ALVIN PROD. Built with ❤️ and Code.</p>
+    </footer>
+
+</body>
+</html>
