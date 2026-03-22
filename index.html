@@ -3,203 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALVIN MUSIC | PORTO</title>
+    <title>ALVIN PROD | STUDIO PORTFOLIO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,800;1,800&display=swap" rel="stylesheet">
     <style>
-        body { background: #0b0f19; color: #e5e7eb; font-family: 'Inter', sans-serif; }
-        .music-card { background: rgba(31, 41, 55, 0.4); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); margin-bottom: 2rem; }
-        .lyrics-box { height: 350px; overflow-y: auto; white-space: pre-wrap; font-style: italic; color: #d1d5db; }
+        :root {
+            --primary: #3b82f6;
+            --bg-dark: #05070a;
+        }
+        body { 
+            background: var(--bg-dark); 
+            color: #e2e8f0; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            overflow: hidden;
+            background-image: radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 70%, rgba(239, 68, 68, 0.05) 0%, transparent 50%);
+        }
+        .sidebar { 
+            background: rgba(15, 18, 26, 0.8); 
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.05); 
+        }
+        .nav-item { 
+            cursor: pointer; 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 16px; 
+            margin-bottom: 12px; 
+            border: 1px solid transparent;
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .nav-item:hover { 
+            background: rgba(255, 255, 255, 0.05); 
+            transform: translateX(8px);
+        }
+        .nav-item.active { 
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.05) 100%);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.15);
+            color: #fff;
+        }
+        .main-view { height: 100vh; overflow-y: auto; scroll-behavior: smooth; }
+        .lyrics-scroll { 
+            height: 450px; 
+            overflow-y: auto; 
+            white-space: pre-wrap; 
+            line-height: 2; 
+            padding-right: 20px;
+            scrollbar-width: thin; 
+            scrollbar-color: #3b82f6 transparent; 
+        }
+        .lyrics-scroll::-webkit-scrollbar { width: 4px; }
+        .lyrics-scroll::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 10px; }
+        
+        .album-cover { 
+            width: 320px; height: 320px; 
+            object-fit: cover; 
+            border-radius: 24px; 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.1);
+            transition: transform 0.5s ease;
+        }
+        .album-cover:hover { transform: scale(1.02) rotate(2deg); }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 32px;
+        }
+        
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.4); }
+            100% { text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+        }
+        .glow-text { animation: glow 3s infinite ease-in-out; }
+        
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(30px) scale(0.95); } 
+            to { opacity: 1; transform: translateY(0) scale(1); } 
+        }
     </style>
 </head>
-<body class="p-6 md:p-12">
+<body class="flex flex-col md:flex-row">
 
-    <div class="max-w-5xl mx-auto">
-        
-        <header class="mb-12 text-center">
-            <h1 class="text-4xl font-black text-blue-500 italic uppercase">Alvin<span class="text-white font-normal">Prod.</span></h1>
-            <p class="text-gray-400 mt-2 italic">3 Tracks Portfolio</p>
-        </header>
-
-        <!-- LAGU 1: ASA -->
-        <div class="music-card p-8 rounded-3xl border-l-4 border-blue-500">
-            <div class="flex flex-col md:flex-row gap-8">
-                <div class="flex-1">
-                    <span class="text-blue-500 font-bold text-xs uppercase tracking-widest">Track #1</span>
-                    <h3 class="text-3xl font-bold mt-2 mb-4 uppercase">ASA</h3>
-                    <div class="bg-gray-800 p-4 rounded-2xl mb-4 text-center">
-                        <audio controls class="w-full">
-                            <source src="track1.mp3" type="audio/mpeg">
-                        </audio>
-                    </div>
-                </div>
-                <div class="flex-1">
-                    <h4 class="font-bold mb-3 text-blue-400 uppercase text-xs">Lyrics</h4>
-                    <div class="lyrics-box bg-gray-900/50 p-6 rounded-xl text-sm">
-{verse 1}
-seems like youre taking a chance
-But, losing all your plans
-while, everyones doing fine
-you're left behind
-its like youre Not deserve it
-try hard but never make it
-Hold on now, don't you bow,
-you're strong e-nough to face it.
-
-Since all I want is something more
-Than numbers in a limit
-What I know, you dont know
-not like other people
-Choosing to be just fools like empty bodies
-a system telling lies and fables
-
-{pre chorus}
-All I know, I know it
-But you won't, admit it
-just not yet
-Because we'll own the skyyyyyyyyyyyyyyyy
-
-[Chorus]
-No more li-mits, no more lies
-Watch us light-ing up the skies
-Through the dark, we find the way
-This is our ASA!</div>
-                </div>
-            </div>
+    <!-- SIDEBAR -->
+    <div class="sidebar w-full md:w-80 p-8 flex flex-col h-screen z-10">
+        <div class="mb-12">
+            <h1 class="text-3xl font-extrabold tracking-tighter text-blue-500 italic uppercase glow-text">Alvin<span class="text-white font-normal text-sm ml-1 opacity-70">Prod.</span></h1>
+            <div class="h-1 w-12 bg-blue-600 mt-2 rounded-full"></div>
+            <p class="text-[10px] text-slate-500 uppercase tracking-[0.4em] mt-3 font-bold italic">Studio Master 2026</p>
         </div>
 
-        <!-- LAGU 2: SUNSET -->
-        <div class="music-card p-8 rounded-3xl border-l-4 border-orange-500">
-            <div class="flex flex-col md:flex-row gap-8">
-                <div class="flex-1">
-                    <span class="text-orange-500 font-bold text-xs uppercase tracking-widest">Track #2</span>
-                    <h3 class="text-3xl font-bold mt-2 mb-4 uppercase">SUNSET</h3>
-                    <div class="bg-gray-800 p-4 rounded-2xl mb-4">
-                        <audio controls class="w-full">
-                            <source src="sunset.mp3" type="audio/mpeg">
-                        </audio>
-                    </div>
-                </div>
-                <div class="flex-1">
-                    <h4 class="font-bold mb-3 text-orange-400 uppercase text-xs">Lyrics</h4>
-                    <div class="lyrics-box bg-gray-900/50 p-6 rounded-xl text-sm">
-Verse 1:
-sore hari ku enjoying
-tengah riding mengelilingi pantai
-lookin for sunsets for seeing
-tak lupa siap kan pose charming
-
-rumunan dolphins ya dancing
-flying atas Udara lewati air dengan jumping
-seakan noticing what are we doing
-not forgeting to picture taking
-
-pre chorus: 
-we riding, waving
-between ini sunset viewing
-enjoying also not forget to seeing
-
-chorus: 
-bagai sunset yang indah 
-terbenam dengan lega
-seakan semua beban udah sirna
-its same like living
-always ada sunset after that sun rising ....</div>
-                </div>
+        <nav id="track-list" class="flex-1 overflow-y-auto pr-2">
+            <!-- ASA -->
+            <div onclick="changeTrack('asa')" id="btn-asa" class="nav-item active p-5 flex items-center gap-4 group">
+                <div class="w-12 h-12 bg-blue-600/20 text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all rounded-xl flex items-center justify-center font-black">01</div>
+                <div><p class="text-[11px] font-black uppercase tracking-widest">ASA</p><p class="text-[9px] opacity-40 italic">Future Rock</p></div>
             </div>
-        </div>
-
-        <!-- LAGU 3: TAKE ME TO JAPAN (FULL LIRIK) -->
-        <div class="music-card p-8 rounded-3xl border-l-4 border-red-500">
-            <div class="flex flex-col md:flex-row gap-8">
-                <div class="flex-1">
-                    <span class="text-red-500 font-bold text-xs uppercase tracking-widest">Track #3</span>
-                    <h3 class="text-3xl font-bold mt-2 mb-4 uppercase text-white">TAKE ME TO JAPAN</h3>
-                    <div class="bg-gray-800 p-4 rounded-2xl mb-4">
-                        <audio controls class="w-full">
-                            <source src="TAKE TAKE ME TO JAPAN.mp3" type="audio/mpeg">
-                        </audio>
-                    </div>
-                </div>
-                <div class="flex-1">
-                    <h4 class="font-bold mb-3 text-red-400 uppercase text-xs">Full Lyrics</h4>
-                    <div class="lyrics-box bg-gray-900/50 p-6 rounded-xl text-sm">
-Verse 1:
-hey . . .
-I'm lying on my bed
-doing nothing just thinking
-with One ok rocks playing...
-
-i keep asking ...
-in this life
-is it ive been really doing something
-or im just breathing
-and doing nothing . . .
-
-pre chorus:
-but someone says, stand out fit in
-doesn't matter make you down
-you gonna win
-
-Chorus:
-If I got a chance to do something
-anda chasing something
-I want to go to the Kamakura buildings
-standing, seeing and watching
-all the beautifuls living
-
-post:
-oh god ... take me take me to Japan ....
-take me take me to Japan ....
-
-Verse 2:
-its already 5 PM
-Finally im realized
-iv been doing nothing
-for couple hours passing
-so im get up
-and running to park parking
-
-staring and seeing
-the kids are playing and running
-so funny watching
-its so reminding
-
-pre chorus:
-but someone says, stand out fit in
-doesn't matter make you down
-you gonna win
-
-Chorus:
-If I got a chance to do something
-anda chasing something
-I want to go to the Kamakura buildings
-standing, seeing and watching
-all the beautifuls living
-
-post:
-oh god ... take me take me to Japan ....
-take me take me to Japan ....
-
-bridge:
-im also went to Hokkaido
-for feeling, freezing
-like people theres living ....
-
-Chorus:
-If I got a chance to do something
-anda chasing something
-I want to go to the Kamakura buildings
-standing, seeing and watching
-all the beautifuls living
-
-post:
-oh god ... take me take me to Japan ....
-take me take me travelling arounding Japan ....</div>
-                </div>
+            <!-- SUNSET -->
+            <div onclick="changeTrack('sunset')" id="btn-sunset" class="nav-item p-5 flex items-center gap-4 group">
+                <div class="w-12 h-12 bg-orange-600/20 text-orange-400 group-hover:bg-orange-600 group-hover:text-white transition-all rounded-xl flex items-center justify-center font-black">02</div>
+                <div><p class="text-[11px] font-black uppercase tracking-widest">SUNSET</p><p class="text-[9px] opacity-40 italic">Beach Chill</p></div>
             </div>
-        </div>
+            <!-- TAKE ME TO JAPAN -->
+            <div onclick="changeTrack('japan')" id="btn-japan" class="nav-item p-5 flex items-center gap-4 group">
+                <div class="w-12 h-12 bg-red-600/20 text-red-400 group-hover:bg-red-600 group-hover:text-white transition-all rounded-xl flex items-center justify-center font-black">03</div>
+                <div><p class="text-[11px] font-black uppercase tracking-widest">TAKE ME TO JAPAN</p><p class="text-[9px] opacity-40 italic">Dreamy J-Pop</p></div>
+            </div>
+        </nav>
 
+        <div class="mt-auto pt-6 border-t border-white/5">
+            <a href="https://wa.me/628123456789" class="flex items-center justify-center gap-3 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-black rounded-2xl uppercase tracking-widest shadow-xl hover:scale-105 active:scale-95 transition-all">
+                <i class="fab fa-whatsapp text-lg"></i> Hire Studio
+            </a>
+        </div>
     </div>
+
+    <!-- MAIN VIEW -->
+    <div class="main-view flex-1 p-6 md:p-12 relative">
+        <div id="display-area" class="max-w-5xl mx-auto h-full flex items-center">
+            <!-- Content will be injected here -->
+        </div>
+    </div>
+
+    <script>
+        const tracks = {
+            asa: {
+                title: "ASA",
+                color: "#3b82f6",
+                file: "track1.mp3",
+                img: "cover_asa.png",
+                lyrics: `{verse 1}\nseems like youre taking a chance\nBut, losing all your plans\nwhile, everyones doing fine\nyou're left behind\nits like youre Not deserve it\ntry hard but never make it\nHold on now,\ndon't you bow,\nyou're strong e-nough to face it.\n\nSince all I want is something more\nThan numbers in a limit\nWhat I know, you dont know\nnot like other people\nChoosing to be just fools\nlike empty bodies\na system telling lies and fables\n\n{pre chorus}\nAll I know, I know it\nBut you won't, admit it\njust not yet\nBecause we'll own the skyyyyyyyyyyyyyyyy\n\n[Chorus]\nNo more li-mits, no more lies\nWatch us light-ing up the skies\nThrough the dark, we find the way\nThis is our ASA!\n\nNo more li-mits, no more lies\nWatch us light-ing up the skies\nThrough the dark, we find the way\nThis is our ASA!\n\n{verse 2}\n\ntimeeeee.......\nis it lonely\nbreak away now , stop sharing problems\nthe other time you there\nbut anytime u bear\nlike anybody waking up\nreaching at tonight\nis it like feel real\nis it like u are here\nno other , now clear\ncome so louddd\n\naaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaa\naaaaaaaaaa\naaaaaaaaaaaaa\n\nSince all I want is something more\nThan numbers in a limit\nWhat I know, you don't know\nnot like other people\nChoosing to be just fools\nlike empty bodies\na system telling lying fable\n\n{pre chorus}\nAll I know, I know it\nBut you won't, admit it\njust not yet\nBecause we'll own the skyyyyyyyyyyyyyyyy\n\n[Chorus]\nNo more li-mits, no more lies\nWatch us lighting up the skies\nWe’re not fools, we’re not the same\nNot like be-fore!\n\n[Post-Chorus]\nanybody  timeeeeeeeee\ntell me what u win\nooooooo\nanda anybody wanna chase\ntell em ,  i never let get better\nooooooo\n\n[Bridge]\nmasih cari\n\n[Chorus]\nNo more li-mits, no more lies (clap )\nWatch us light-ing up the skies (clap )\nWe’re not fools, we’re not the same (clap )\nNot like be-fore! (clap )`
+            },
+            sunset: {
+                title: "SUNSET",
+                color: "#f97316",
+                file: "sunset.mp3",
+                img: "cover_sunset.png",
+                lyrics: `Verse 1:\nsore hari ku enjoying\ntengah riding mengelilingi pantai\nlookin for sunsets for seeing\ntak lupa siap kan pose charming\n\nrumunan dolphins ya dancing\nflying atas Udara lewati air dengan jumping\nseakan noticing what are we doing\nnot forgeting to picture taking\n\npre chorus:\nwe riding , waving\nbetween ini sunset viewing\nenjoying also not forget to seeing\n\nchorus:\nbagai sunset yang indah\nterbenam dengan lega\nseakan semua beban udah sirna\nits same like living\nalways ada sunset after that sun rising ....\n\npost:\nso keep living\nand keep memorizing ......\n\nVerse 2:\nmatahari sudah drowning\nnow its changes\nfor moon its shinning\ndont forget we pray\nfor blessing\n\nkita nyalakan bonfire\ndibawah rembulan shinning\ntidak lupa akan box freezing\nfor all things from fishing\n\npre chorus:\nnow we sitting , enjoying\nall the fish we grilling\ntogether we're singing\n\nchorus:\nbagai sunset yang indah\nterbenam dengan lega\nseakan semua beban udah sirna\nits same like living\nalways ada sunset after that sun rising ....\n\npost chorus;\nsun ada for rising , lalu ada moon juga for shining ...\n\npost:\nso keep living\nand keep memorizing ......\n\nArigatou for living.`
+            },
+            japan: {
+                title: "TAKE ME TO JAPAN",
+                color: "#ef4444",
+                file: "TAKE TAKE ME TO JAPAN.mp3",
+                img: "cover_japan.png",
+                lyrics: `Verse 1:\nhey . . .\nI'm lying on my bed\ndoing nothing just thinking\nwith One ok rocks playing...\n\ni keep asking ...\nin this life\nis it ive been really doing something\or im just breathing\nand doing nothing . . .\n\npre chorus:\nbut someone says, stand out fit in\ndoesn't matter make you down\nyou gonna win\n\nChorus:\nIf I got a chance to do something\nanda chasing something\nI want to go to the Kamakura buildings\nstanding, seeing and watching\nall the beautifuls living\n\npost:\noh god ... take me take me to Japan ....\ntake me take me to Japan ....\n\nVerse 2:\nits already 5 PM\nFinally im realized\niv been doing nothing\nfor couple hours passing\nso im get up\nand running to park parking\n\nstaring and seeing\nthe kids are playing and running\nso funny watching\nits so reminding\n\npre chorus:\nbut someone says, stand out fit in\ndoesn't matter make you down\nyou gonna win\n\nChorus:\nIf I got a chance to do something\nanda chasing something\nI want to go to the Kamakura buildings\nstanding, seeing and watching\nall the beautifuls living\n\npost:\noh god ... take me take me to Japan ....\ntake me take me to Japan ....\n\nbridge:\ im also went to Hokkaido\nfor feeling, freezing\nlike people theres living ....\n\nChorus:\nIf I got a chance to do something\nanda chasing something\nI want to go to the Kamakura buildings\nstanding, seeing and watching\nall the beautifuls living\n\npost:\noh god ... take me take me to Japan ....\ntake me take me travelling arounding Japan ....`
+            }
+        };
+
+        function changeTrack(key) {
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            document.getElementById('btn-' + key).classList.add('active');
+
+            const track = tracks[key];
+            const html = `
+                <div class="flex flex-col lg:flex-row gap-16 items-center w-full animate-[fadeIn_0.6s_ease-out]">
+                    <div class="flex-none relative">
+                        <div class="absolute -inset-4 bg-[${track.color}] opacity-20 blur-3xl rounded-full"></div>
+                        <img src="${track.img}" class="album-cover relative z-10" onerror="this.src='https://via.placeholder.com/320/1e293b/white?text=${track.title}'">
+                        <div class="mt-10 glass-panel p-6">
+                             <div class="flex justify-between text-[10px] mb-2 font-bold opacity-50 uppercase tracking-tighter">
+                                <span>Analog Studio Mode</span>
+                                <span class="text-blue-400">Mastering 24-bit</span>
+                             </div>
+                            <audio controls class="w-full h-10"><source src="${track.file}" type="audio/mpeg"></audio>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-1 w-full lg:pr-10">
+                        <span class="text-[10px] font-black px-3 py-1 bg-white/10 rounded-full text-blue-400 mb-4 inline-block uppercase tracking-widest">New Release</span>
+                        <h2 class="text-6xl font-black text-white italic uppercase mb-8 tracking-tighter leading-none">${track.title}</h2>
+                        
+                        <div class="glass-panel p-10 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-4 opacity-10">
+                                <i class="fas fa-quote-right text-4xl text-white"></i>
+                            </div>
+                            <div class="lyrics-scroll text-base text-slate-300 font-medium italic">
+${track.lyrics}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('display-area').innerHTML = html;
+        }
+
+        // Initialize with ASA
+        changeTrack('asa');
+    </script>
 </body>
 </html>
