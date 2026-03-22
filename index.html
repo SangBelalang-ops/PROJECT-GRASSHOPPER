@@ -87,7 +87,6 @@
 </head>
 <body class="flex flex-col md:flex-row">
 
-    <!-- SIDEBAR -->
     <div class="sidebar w-full md:w-80 p-8 flex flex-col h-screen z-10">
         <div class="mb-12">
             <h1 class="text-3xl font-extrabold tracking-tighter text-blue-500 italic uppercase glow-text">Alvin<span class="text-white font-normal text-sm ml-1 opacity-70">Prod.</span></h1>
@@ -96,17 +95,14 @@
         </div>
 
         <nav id="track-list" class="flex-1 overflow-y-auto pr-2">
-            <!-- ASA -->
             <div onclick="changeTrack('asa')" id="btn-asa" class="nav-item active p-5 flex items-center gap-4 group">
                 <div class="w-12 h-12 bg-blue-600/20 text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all rounded-xl flex items-center justify-center font-black">01</div>
                 <div><p class="text-[11px] font-black uppercase tracking-widest">ASA</p><p class="text-[9px] opacity-40 italic">Future Rock</p></div>
             </div>
-            <!-- SUNSET -->
             <div onclick="changeTrack('sunset')" id="btn-sunset" class="nav-item p-5 flex items-center gap-4 group">
                 <div class="w-12 h-12 bg-orange-600/20 text-orange-400 group-hover:bg-orange-600 group-hover:text-white transition-all rounded-xl flex items-center justify-center font-black">02</div>
                 <div><p class="text-[11px] font-black uppercase tracking-widest">SUNSET</p><p class="text-[9px] opacity-40 italic">Beach Chill</p></div>
             </div>
-            <!-- TAKE ME TO JAPAN -->
             <div onclick="changeTrack('japan')" id="btn-japan" class="nav-item p-5 flex items-center gap-4 group">
                 <div class="w-12 h-12 bg-red-600/20 text-red-400 group-hover:bg-red-600 group-hover:text-white transition-all rounded-xl flex items-center justify-center font-black">03</div>
                 <div><p class="text-[11px] font-black uppercase tracking-widest">TAKE ME TO JAPAN</p><p class="text-[9px] opacity-40 italic">Dreamy J-Pop</p></div>
@@ -120,11 +116,9 @@
         </div>
     </div>
 
-    <!-- MAIN VIEW -->
     <div class="main-view flex-1 p-6 md:p-12 relative">
         <div id="display-area" class="max-w-5xl mx-auto h-full flex items-center">
-            <!-- Content will be injected here -->
-        </div>
+            </div>
     </div>
 
     <script>
@@ -133,21 +127,21 @@
                 title: "ASA",
                 color: "#3b82f6",
                 file: "track1.mp3",
-                img: "cover_asa.png",
+                img: "cover_asa.jpg", // GUE UBAH JADI JPG BREE
                 lyrics: `{verse 1}\nseems like youre taking a chance\nBut, losing all your plans\nwhile, everyones doing fine\nyou're left behind\nits like youre Not deserve it\ntry hard but never make it\nHold on now,\ndon't you bow,\nyou're strong e-nough to face it.\n\nSince all I want is something more\nThan numbers in a limit\nWhat I know, you dont know\nnot like other people\nChoosing to be just fools\nlike empty bodies\na system telling lies and fables\n\n{pre chorus}\nAll I know, I know it\nBut you won't, admit it\njust not yet\nBecause we'll own the skyyyyyyyyyyyyyyyy\n\n[Chorus]\nNo more li-mits, no more lies\nWatch us light-ing up the skies\nThrough the dark, we find the way\nThis is our ASA!\n\nNo more li-mits, no more lies\nWatch us light-ing up the skies\nThrough the dark, we find the way\nThis is our ASA!\n\n{verse 2}\n\ntimeeeee.......\nis it lonely\nbreak away now , stop sharing problems\nthe other time you there\nbut anytime u bear\nlike anybody waking up\nreaching at tonight\nis it like feel real\nis it like u are here\nno other , now clear\ncome so louddd\n\naaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaa\naaaaaaaaaa\naaaaaaaaaaaaa\n\nSince all I want is something more\nThan numbers in a limit\nWhat I know, you don't know\nnot like other people\nChoosing to be just fools\nlike empty bodies\na system telling lying fable\n\n{pre chorus}\nAll I know, I know it\nBut you won't, admit it\njust not yet\nBecause we'll own the skyyyyyyyyyyyyyyyy\n\n[Chorus]\nNo more li-mits, no more lies\nWatch us lighting up the skies\nWe’re not fools, we’re not the same\nNot like be-fore!\n\n[Post-Chorus]\nanybody  timeeeeeeeee\ntell me what u win\nooooooo\nanda anybody wanna chase\ntell em ,  i never let get better\nooooooo\n\n[Bridge]\nmasih cari\n\n[Chorus]\nNo more li-mits, no more lies (clap )\nWatch us light-ing up the skies (clap )\nWe’re not fools, we’re not the same (clap )\nNot like be-fore! (clap )`
             },
             sunset: {
                 title: "SUNSET",
                 color: "#f97316",
                 file: "sunset.mp3",
-                img: "cover_sunset.png",
-                lyrics: `Verse 1:\nsore hari ku enjoying\ntengah riding mengelilingi pantai\nlookin for sunsets for seeing\ntak lupa siap kan pose charming\n\nrumunan dolphins ya dancing\nflying atas Udara lewati air dengan jumping\nseakan noticing what are we doing\nnot forgeting to picture taking\n\npre chorus:\nwe riding , waving\nbetween ini sunset viewing\nenjoying also not forget to seeing\n\nchorus:\nbagai sunset yang indah\nterbenam dengan lega\nseakan semua beban udah sirna\nits same like living\nalways ada sunset after that sun rising ....\n\npost:\nso keep living\nand keep memorizing ......\n\nVerse 2:\nmatahari sudah drowning\nnow its changes\nfor moon its shinning\ndont forget we pray\nfor blessing\n\nkita nyalakan bonfire\ndibawah rembulan shinning\ntidak lupa akan box freezing\nfor all things from fishing\n\npre chorus:\nnow we sitting , enjoying\nall the fish we grilling\ntogether we're singing\n\nchorus:\nbagai sunset yang indah\nterbenam dengan lega\nseakan semua beban udah sirna\nits same like living\nalways ada sunset after that sun rising ....\n\npost chorus;\nsun ada for rising , lalu ada moon juga for shining ...\n\npost:\nso keep living\nand keep memorizing ......\n\nArigatou for living.`
+                img: "cover_sunset.jpg", // GUE UBAH JADI JPG BREE
+                lyrics: `Verse 1:\nsore hari ku enjoying\ntengah riding mengelilingi pantai\nlookin for sunsets for seeing\ntak lupa siap kan pose charming\n\nrumunan dolphins ya dancing\nflying atas Udara lewati air dengan jumping\nseakan noticing what are we doing\nnot forgeting to picture taking\n\npre chorus:\nwe riding , waving\nbetween ini sunset viewing\nenjoying also not forget to seeing\n\nchorus:\nbagai sunset yang indah\nterbenam dengan lega\nseakan semua beban udah sirna\nits same like living\nalways ada sunset after that sun rising ....\n\npost:\nso keep living\nand keep memorizing ......\n\nVerse 2:\nmatahari sudah drowning\nnow its changes\nfor moon its shinning\ndont forget we pray\nfor blessing\n\nkita nyalakan bonfire\ dibawah rembulan shinning\ntidak lupa akan box freezing\nfor all things from fishing\n\npre chorus:\nnow we sitting , enjoying\nall the fish we grilling\ntogether we're singing\n\nchorus:\nbagai sunset yang indah\nterbenam dengan lega\nseakan semua beban udah sirna\nits same like living\nalways ada sunset after that sun rising ....\n\npost chorus;\nsun ada for rising , lalu ada moon juga for shining ...\n\npost:\nso keep living\nand keep memorizing ......\n\nArigatou for living.`
             },
             japan: {
                 title: "TAKE ME TO JAPAN",
                 color: "#ef4444",
                 file: "TAKE TAKE ME TO JAPAN.mp3",
-                img: "cover_japan.png",
+                img: "cover_japan.jpg", // GUE UBAH JADI JPG BREE
                 lyrics: `Verse 1:\nhey . . .\nI'm lying on my bed\ndoing nothing just thinking\nwith One ok rocks playing...\n\ni keep asking ...\nin this life\nis it ive been really doing something\or im just breathing\nand doing nothing . . .\n\npre chorus:\nbut someone says, stand out fit in\ndoesn't matter make you down\nyou gonna win\n\nChorus:\nIf I got a chance to do something\nanda chasing something\nI want to go to the Kamakura buildings\nstanding, seeing and watching\nall the beautifuls living\n\npost:\noh god ... take me take me to Japan ....\ntake me take me to Japan ....\n\nVerse 2:\nits already 5 PM\nFinally im realized\niv been doing nothing\nfor couple hours passing\nso im get up\nand running to park parking\n\nstaring and seeing\nthe kids are playing and running\nso funny watching\nits so reminding\n\npre chorus:\nbut someone says, stand out fit in\ndoesn't matter make you down\nyou gonna win\n\nChorus:\nIf I got a chance to do something\nanda chasing something\nI want to go to the Kamakura buildings\nstanding, seeing and watching\nall the beautifuls living\n\npost:\noh god ... take me take me to Japan ....\ntake me take me to Japan ....\n\nbridge:\ im also went to Hokkaido\nfor feeling, freezing\nlike people theres living ....\n\nChorus:\nIf I got a chance to do something\nanda chasing something\nI want to go to the Kamakura buildings\nstanding, seeing and watching\nall the beautifuls living\n\npost:\noh god ... take me take me to Japan ....\ntake me take me travelling arounding Japan ....`
             }
         };
