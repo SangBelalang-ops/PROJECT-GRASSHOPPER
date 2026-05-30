@@ -3,188 +3,372 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALVIN PROD | STUDIO PORTFOLIO</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,800;1,800&display=swap" rel="stylesheet">
+    <title>TERSNACKS.ID - ARMENIA WINTER EDITION</title>
     <style>
-        :root {
-            --primary: #3b82f6;
-            --bg-dark: #05070a;
+        :root { 
+            --primary: #d90012; /* Red Armenia */
+            --secondary: #0033a0; /* Blue Armenia */
+            --orange: #f2a800; /* Orange Armenia */
+            --glass: rgba(15, 25, 45, 0.9); 
+            --success: #ffd700; 
+            --danger: #b22222; 
+            --snow: #ffffff;
         }
         body { 
-            background: var(--bg-dark); 
-            color: #e2e8f0; 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            overflow: hidden;
-            background-image: radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
-                              radial-gradient(circle at 80% 70%, rgba(239, 68, 68, 0.05) 0%, transparent 50%);
+            font-family: 'Segoe UI', sans-serif; 
+            margin: 0; background: #0a0f1d; color: white; 
+            text-align: center; padding-bottom: 50px; overflow-x: hidden; 
         }
-        .sidebar { 
-            background: rgba(15, 18, 26, 0.8); 
-            backdrop-filter: blur(20px);
-            border-right: 1px solid rgba(255, 255, 255, 0.05); 
-        }
-        .nav-item { 
-            cursor: pointer; 
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 16px; 
-            margin-bottom: 12px; 
-            border: 1px solid transparent;
-            background: rgba(255, 255, 255, 0.02);
-        }
-        .nav-item:hover { 
-            background: rgba(255, 255, 255, 0.05); 
-            transform: translateX(8px);
-        }
-        .nav-item.active { 
-            background: linear-gradient(90deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.05) 100%);
-            border-color: rgba(59, 130, 246, 0.5);
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.15);
-            color: #fff;
-        }
-        .main-view { height: 100vh; overflow-y: auto; scroll-behavior: smooth; }
-        .lyrics-scroll { 
-            height: 450px; 
-            overflow-y: auto; 
-            white-space: pre-wrap; 
-            line-height: 2; 
-            padding-right: 20px;
-            scrollbar-width: thin; 
-            scrollbar-color: #3b82f6 transparent; 
-        }
-        .lyrics-scroll::-webkit-scrollbar { width: 4px; }
-        .lyrics-scroll::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 10px; }
-        
-        .album-cover { 
-            width: 320px; height: 320px; 
-            object-fit: cover; 
-            border-radius: 24px; 
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.1);
-            transition: transform 0.5s ease;
-        }
-        .album-cover:hover { transform: scale(1.02) rotate(2deg); }
 
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 32px;
+        /* CANVAS SALJU */
+        #snowCanvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1; pointer-events: none;
+        }
+
+        header { 
+            position: relative; z-index: 10; padding: 45px 10px; 
+            background: var(--glass); border-bottom: 3px solid var(--orange); 
+            box-shadow: 0 5px 25px rgba(0, 51, 160, 0.4);
+            background-image: linear-gradient(to bottom, rgba(217,0,18,0.2), transparent);
         }
         
-        @keyframes glow {
-            0% { text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
-            50% { text-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.4); }
-            100% { text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+        .logo-header { 
+            width: 250px; margin-bottom: 10px; 
+            filter: drop-shadow(0 0 15px var(--snow)); 
         }
-        .glow-text { animation: glow 3s infinite ease-in-out; }
         
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(30px) scale(0.95); } 
-            to { opacity: 1; transform: translateY(0) scale(1); } 
+        header p { 
+            margin: 0; font-size: 0.9em; font-weight: 900; 
+            letter-spacing: 3px; color: var(--snow); 
+            text-shadow: 0 0 10px var(--secondary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; text-shadow: 0 0 20px var(--orange); }
+            100% { opacity: 0.7; }
+        }
+
+        .kentang-left, .kentang-right {
+            position: absolute; bottom: 0; width: 120px; z-index: 11;
+            pointer-events: none; filter: drop-shadow(0 0 8px var(--snow));
+        }
+        .kentang-left { left: 10px; }
+        .kentang-right { right: 10px; }
+
+        /* GRID FLEXBOX */
+        .grid { 
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px; 
+            padding: 15px; 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            position: relative; 
+            z-index: 10; 
+        }
+        
+        .card { 
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(5px);
+            border-radius: 15px; overflow: hidden; 
+            border: 1px solid rgba(255, 255, 255, 0.1); position: relative; 
+            transition: 0.3s;
+            width: calc(23% - 12px); 
+            min-width: 160px;
+        }
+        .card:hover { border-color: var(--orange); transform: translateY(-5px); }
+
+        .card img { width: 100%; height: 130px; object-fit: cover; }
+        
+        .sold-out-overlay { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 130px; 
+            background: rgba(0,0,0,0.8); display: none; align-items: center; 
+            justify-content: center; z-index: 5;
+        }
+        .is-empty .sold-out-overlay { display: flex; }
+        .so-text { 
+            color: white; background: var(--danger); padding: 5px 15px; 
+            font-weight: 900; transform: rotate(-15deg); 
+            border: 2px solid white; font-size: 0.8em; 
+        }
+
+        .card-info { padding: 10px; }
+        .card-name { 
+            font-size: 0.75em; font-weight: 800; color: var(--snow); 
+            height: 35px; display: flex; align-items: center; 
+            justify-content: center; text-transform: uppercase; 
+        }
+        
+        .stock-tag { 
+            font-size: 0.65em; color: var(--orange); 
+            background: rgba(242, 168, 0, 0.15); border-radius: 5px; 
+            padding: 2px 8px; display: inline-block; 
+            margin-bottom: 10px; font-weight: 900;
+        }
+
+        .counter { display: flex; justify-content: center; align-items: center; gap: 8px; }
+        .btn-qty { 
+            background: var(--secondary); border: 1px solid var(--snow); 
+            width: 30px; height: 30px; border-radius: 8px; color: white; cursor: pointer; 
+        }
+        .btn-qty:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        #total-bar { 
+            position: fixed; bottom: 0; left: 0; right: 0; 
+            background: var(--secondary); padding: 18px 25px; display: none; 
+            justify-content: space-between; align-items: center; 
+            border-top: 3px solid var(--orange); z-index: 1000; 
+            backdrop-filter: blur(10px); 
+        }
+        .btn-order { 
+            background: var(--orange); color: black; border: none; 
+            padding: 12px 25px; border-radius: 12px; font-weight: 900; cursor: pointer; 
+        }
+
+        #payment-area { 
+            position: relative; z-index: 10; display:none; padding: 40px 20px; 
+            background: rgba(10, 15, 29, 0.98); border-top: 2px solid var(--orange); 
+        }
+        .input-nama { 
+            width: 85%; padding: 15px; border-radius: 12px; 
+            border: 1px solid var(--orange); background: transparent; 
+            color: white; margin-bottom: 25px; text-align: center; font-weight: 800; 
+        }
+        
+        .pay-options { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
+        .opt-btn { 
+            background: transparent; border: 2px solid var(--orange); color: white; 
+            padding: 12px 25px; border-radius: 10px; cursor: pointer; font-weight: 900; 
+        }
+        .opt-btn.active { background: var(--orange); color: black; }
+
+        .qr-display { display: none; justify-content: center; margin-bottom: 30px; }
+        .qr-box { background: white; padding: 12px; border-radius: 15px; width: 200px; }
+        .qr-box img { width: 100%; border-radius: 5px; }
+        .qr-label { color: black; font-size: 0.8em; font-weight: 900; margin-top: 8px; }
+
+        .final-btn { 
+            background: var(--orange); color: #000; padding: 18px; 
+            border: none; border-radius: 50px; font-weight: 900; 
+            width: 90%; cursor: pointer; 
+        }
+
+        footer { 
+            position: relative; z-index: 10; margin-top: 60px; 
+            padding: 50px 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); 
+            background: var(--secondary); 
+        }
+
+        @media (max-width: 600px) { 
+            .card { width: calc(48% - 12px); }
+            .kentang-left, .kentang-right { width: 85px; bottom: -10px; } 
         }
     </style>
 </head>
-<body class="flex flex-col md:flex-row">
+<body>  
 
-    <div class="sidebar w-full md:w-80 p-8 flex flex-col h-screen z-10">
-        <div class="mb-12">
-            <h1 class="text-3xl font-extrabold tracking-tighter text-blue-500 italic uppercase glow-text">Alvin<span class="text-white font-normal text-sm ml-1 opacity-70">Prod.</span></h1>
-            <div class="h-1 w-12 bg-blue-600 mt-2 rounded-full"></div>
-            <p class="text-[10px] text-slate-500 uppercase tracking-[0.4em] mt-3 font-bold italic">Studio Master 2026</p>
-        </div>
+<canvas id="snowCanvas"></canvas>
 
-        <nav id="track-list" class="flex-1 overflow-y-auto pr-2">
-            <div onclick="changeTrack('asa')" id="btn-asa" class="nav-item active p-5 flex items-center gap-4 group">
-                <div class="w-12 h-12 bg-blue-600/20 text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all rounded-xl flex items-center justify-center font-black">01</div>
-                <div><p class="text-[11px] font-black uppercase tracking-widest">ASA</p><p class="text-[9px] opacity-40 italic">Future Rock</p></div>
-            </div>
-            <div onclick="changeTrack('sunset')" id="btn-sunset" class="nav-item p-5 flex items-center gap-4 group">
-                <div class="w-12 h-12 bg-orange-600/20 text-orange-400 group-hover:bg-orange-600 group-hover:text-white transition-all rounded-xl flex items-center justify-center font-black">02</div>
-                <div><p class="text-[11px] font-black uppercase tracking-widest">SUNSET</p><p class="text-[9px] opacity-40 italic">Beach Chill</p></div>
-            </div>
-            <div onclick="changeTrack('japan')" id="btn-japan" class="nav-item p-5 flex items-center gap-4 group">
-                <div class="w-12 h-12 bg-red-600/20 text-red-400 group-hover:bg-red-600 group-hover:text-white transition-all rounded-xl flex items-center justify-center font-black">03</div>
-                <div><p class="text-[11px] font-black uppercase tracking-widest">TAKE ME TO JAPAN</p><p class="text-[9px] opacity-40 italic">Dreamy J-Pop</p></div>
-            </div>
-        </nav>
+<header>
+    <img src="https://i.postimg.cc/T3Dj51gC/download.png" class="logo-header">
+    <h2 style="margin:0; font-size: 1.4em; font-weight: 900; color: var(--snow);"> WINTER SEASON • TERSNACKS</h2>
+    <p>❄️ SPECIAL ARMENIA EDITION • $3.00 ❄️</p>
+    
+    <img src="https://i.postimg.cc/1RksQjQ9/olympic-olympics.gif" class="kentang-left" alt="Kiri">
+    <img src="https://i.postimg.cc/nLk693gc/haxteluenq-haxtanak.gif" class="kentang-right" alt="Kanan">
+</header>
 
-        <div class="mt-auto pt-6 border-t border-white/5">
-            <a href="https://wa.me/628123456789" class="flex items-center justify-center gap-3 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-black rounded-2xl uppercase tracking-widest shadow-xl hover:scale-105 active:scale-95 transition-all">
-                <i class="fab fa-whatsapp text-lg"></i> Hire Studio
-            </a>
+<div id="loading" style="padding: 50px; color: var(--orange); font-weight: 800;">FROSTING STOCK...</div>
+<div class="grid" id="container-snack"></div>
+
+<div id="total-bar">
+    <div style="text-align:left">
+        <div id="summary" style="font-size: 0.65em; color: #ddd;"></div>
+        <div id="display-total" style="font-weight: 900; color: var(--snow); font-size: 1.4em;">$0.00</div>
+    </div>
+    <button class="btn-order" onclick="openPayment()">CHECKOUT NOW</button>
+</div>
+
+<div id="payment-area">
+    <h3 style="color: var(--orange); font-weight: 900;">WINTER DELIVERY DATA</h3>
+    <input type="text" id="nama-pembeli" class="input-nama" placeholder="ENTER YOUR NAME">
+    
+    <p style="font-size: 0.8em; font-weight: 800; margin-bottom: 15px;">PAYMENT METHOD:</p>
+    <div class="pay-options">
+        <button class="opt-btn" id="btn-riel" onclick="showQR('riel')">RIEL</button>
+        <button class="opt-btn" id="btn-usd" onclick="showQR('usd')">USD</button>
+    </div>
+
+    <div id="qr-riel" class="qr-display">
+        <div class="qr-box">
+            <img src="https://i.postimg.cc/xC8S9kSY/83ab8373-93bf-4620-9f16-ed523851faa0.jpg">
+            <div class="qr-label">SCAN RIEL</div>
         </div>
     </div>
 
-    <div class="main-view flex-1 p-6 md:p-12 relative">
-        <div id="display-area" class="max-w-5xl mx-auto h-full flex items-center">
-            </div>
+    <div id="qr-usd" class="qr-display">
+        <div class="qr-box">
+            <img src="https://i.postimg.cc/PJGhKtBT/USD.jpg">
+            <div class="qr-label">SCAN USD</div>
+        </div>
     </div>
 
-    <script>
-        const tracks = {
-            asa: {
-                title: "ASA",
-                color: "#3b82f6",
-                file: "track1.mp3",
-                img: "cover_asa.jpg", // GUE UBAH JADI JPG BREE
-                lyrics: `{verse 1}\nseems like youre taking a chance\nBut, losing all your plans\nwhile, everyones doing fine\nyou're left behind\nits like youre Not deserve it\ntry hard but never make it\nHold on now,\ndon't you bow,\nyou're strong e-nough to face it.\n\nSince all I want is something more\nThan numbers in a limit\nWhat I know, you dont know\nnot like other people\nChoosing to be just fools\nlike empty bodies\na system telling lies and fables\n\n{pre chorus}\nAll I know, I know it\nBut you won't, admit it\njust not yet\nBecause we'll own the skyyyyyyyyyyyyyyyy\n\n[Chorus]\nNo more li-mits, no more lies\nWatch us light-ing up the skies\nThrough the dark, we find the way\nThis is our ASA!\n\nNo more li-mits, no more lies\nWatch us light-ing up the skies\nThrough the dark, we find the way\nThis is our ASA!\n\n{verse 2}\n\ntimeeeee.......\nis it lonely\nbreak away now , stop sharing problems\nthe other time you there\nbut anytime u bear\nlike anybody waking up\nreaching at tonight\nis it like feel real\nis it like u are here\nno other , now clear\ncome so louddd\n\naaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaa\naaaaaaaaaa\naaaaaaaaaaaaa\n\nSince all I want is something more\nThan numbers in a limit\nWhat I know, you don't know\nnot like other people\nChoosing to be just fools\nlike empty bodies\na system telling lying fable\n\n{pre chorus}\nAll I know, I know it\nBut you won't, admit it\njust not yet\nBecause we'll own the skyyyyyyyyyyyyyyyy\n\n[Chorus]\nNo more li-mits, no more lies\nWatch us lighting up the skies\nWe’re not fools, we’re not the same\nNot like be-fore!\n\n[Post-Chorus]\nanybody  timeeeeeeeee\ntell me what u win\nooooooo\nanda anybody wanna chase\ntell em ,  i never let get better\nooooooo\n\n[Bridge]\nmasih cari\n\n[Chorus]\nNo more li-mits, no more lies (clap )\nWatch us light-ing up the skies (clap )\nWe’re not fools, we’re not the same (clap )\nNot like be-fore! (clap )`
-            },
-            sunset: {
-                title: "SUNSET",
-                color: "#f97316",
-                file: "sunset.mp3",
-                img: "cover_sunset.jpg", // GUE UBAH JADI JPG BREE
-                lyrics: `Verse 1:\nsore hari ku enjoying\ntengah riding mengelilingi pantai\nlookin for sunsets for seeing\ntak lupa siap kan pose charming\n\nrumunan dolphins ya dancing\nflying atas Udara lewati air dengan jumping\nseakan noticing what are we doing\nnot forgeting to picture taking\n\npre chorus:\nwe riding , waving\nbetween ini sunset viewing\nenjoying also not forget to seeing\n\nchorus:\nbagai sunset yang indah\nterbenam dengan lega\nseakan semua beban udah sirna\nits same like living\nalways ada sunset after that sun rising ....\n\npost:\nso keep living\nand keep memorizing ......\n\nVerse 2:\nmatahari sudah drowning\nnow its changes\nfor moon its shinning\ndont forget we pray\nfor blessing\n\nkita nyalakan bonfire\ dibawah rembulan shinning\ntidak lupa akan box freezing\nfor all things from fishing\n\npre chorus:\nnow we sitting , enjoying\nall the fish we grilling\ntogether we're singing\n\nchorus:\nbagai sunset yang indah\nterbenam dengan lega\nseakan semua beban udah sirna\nits same like living\nalways ada sunset after that sun rising ....\n\npost chorus;\nsun ada for rising , lalu ada moon juga for shining ...\n\npost:\nso keep living\nand keep memorizing ......\n\nArigatou for living.`
-            },
-            japan: {
-                title: "TAKE ME TO JAPAN",
-                color: "#ef4444",
-                file: "TAKE TAKE ME TO JAPAN.mp3",
-                img: "cover_japan.jpg", // GUE UBAH JADI JPG BREE
-                lyrics: `Verse 1:\nhey . . .\nI'm lying on my bed\ndoing nothing just thinking\nwith One ok rocks playing...\n\ni keep asking ...\nin this life\nis it ive been really doing something\or im just breathing\nand doing nothing . . .\n\npre chorus:\nbut someone says, stand out fit in\ndoesn't matter make you down\nyou gonna win\n\nChorus:\nIf I got a chance to do something\nanda chasing something\nI want to go to the Kamakura buildings\nstanding, seeing and watching\nall the beautifuls living\n\npost:\noh god ... take me take me to Japan ....\ntake me take me to Japan ....\n\nVerse 2:\nits already 5 PM\nFinally im realized\niv been doing nothing\nfor couple hours passing\nso im get up\nand running to park parking\n\nstaring and seeing\nthe kids are playing and running\nso funny watching\nits so reminding\n\npre chorus:\nbut someone says, stand out fit in\ndoesn't matter make you down\nyou gonna win\n\nChorus:\nIf I got a chance to do something\nanda chasing something\nI want to go to the Kamakura buildings\nstanding, seeing and watching\nall the beautifuls living\n\npost:\noh god ... take me take me to Japan ....\ntake me take me to Japan ....\n\nbridge:\ im also went to Hokkaido\nfor feeling, freezing\nlike people theres living ....\n\nChorus:\nIf I got a chance to do something\nanda chasing something\nI want to go to the Kamakura buildings\nstanding, seeing and watching\nall the beautifuls living\n\npost:\noh god ... take me take me to Japan ....\ntake me take me travelling arounding Japan ....`
-            }
-        };
+    <button id="submit-btn" onclick="sendToSpreadsheet()" class="final-btn">CONFIRM WINTER ORDER</button>
+</div>
 
-        function changeTrack(key) {
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            document.getElementById('btn-' + key).classList.add('active');
+<footer>
+    <h3 style="color: var(--orange); letter-spacing: 2px; margin-bottom: 10px; font-weight: 900; font-size: 1.1em;">ENJOY THE COLD, TASTE THE HEAT!</h3>
+    <div style="color: #fff; font-size: 0.9em; font-weight: 700; opacity: 0.8;">TERSNACKS.ID • ARMENIA JOURNEY 2026</div>
+    <div style="margin-top: 25px; opacity: 0.3; font-size: 0.6em; letter-spacing: 5px; font-weight: 900;">WINTER EDITION • 🇦🇲</div>
+</footer>
 
-            const track = tracks[key];
-            const html = `
-                <div class="flex flex-col lg:flex-row gap-16 items-center w-full animate-[fadeIn_0.6s_ease-out]">
-                    <div class="flex-none relative">
-                        <div class="absolute -inset-4 bg-[${track.color}] opacity-20 blur-3xl rounded-full"></div>
-                        <img src="${track.img}" class="album-cover relative z-10" onerror="this.src='https://via.placeholder.com/320/1e293b/white?text=${track.title}'">
-                        <div class="mt-10 glass-panel p-6">
-                             <div class="flex justify-between text-[10px] mb-2 font-bold opacity-50 uppercase tracking-tighter">
-                                <span>Analog Studio Mode</span>
-                                <span class="text-blue-400">Mastering 24-bit</span>
-                             </div>
-                            <audio controls class="w-full h-10"><source src="${track.file}" type="audio/mpeg"></audio>
+<script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbykBwYZX2poPZx2-7gxtfnlrg0N5BW29lkdYOKeaelaGapyKi3NHQHUYDMoA1XTGTjO/exec";
+
+    // ANIMASI SALJU (Ganti dari Daun)
+    const canvas = document.getElementById('snowCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    let flakes = [];
+    for (let i = 0; i < 60; i++) {
+        flakes.push({
+            x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+            size: Math.random() * 3 + 1, opacity: Math.random(),
+            speed: Math.random() * 1.5 + 0.5, velX: Math.random() * 0.5 - 0.25
+        });
+    }
+    function drawSnow() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+        flakes.forEach(f => {
+            ctx.beginPath();
+            ctx.arc(f.x, f.y, f.size, 0, Math.PI * 2);
+            ctx.fill();
+            f.y += f.speed; f.x += f.velX;
+            if (f.y > canvas.height) { f.y = -5; f.x = Math.random() * canvas.width; }
+        });
+        requestAnimationFrame(drawSnow);
+    }
+    drawSnow();
+
+    // DATA PRODUK TETAP SAMA
+    let snackData = [
+        { id: 0, name: "KACANG TOJIN", stock: 0, img: "https://i.postimg.cc/MZbTnf6L/184f7bee-21ba-4477-81c6-c9f7acfb487a.jpg" },
+        { id: 1, name: "KETAWA", stock: 0, img: "https://i.postimg.cc/ncFLBVMD/b95988fe-979d-48c6-891c-900e8f3e42f1.jpg" },
+        { id: 2, name: "KERIPIK USUS DAUN JERUK", stock: 0, img: "https://i.postimg.cc/4y8bR9YS/e86eb9c5-0d51-4abc-a5e3-0552c719c9d4.jpg" },
+        { id: 3, name: "KUE SUS KERING COKLAT", stock: 0, img: "https://i.postimg.cc/nLX3vcfH/5a308155-4a39-40bc-b5ff-6c53942c6446.jpg" },
+        { id: 4, name: "MAKARONI", stock: 0, img: "https://i.postimg.cc/9f7XCrgJ/9c04e078-ee93-4550-8310-851e9a34d691.jpg" },
+        { id: 5, name: "BASRENG PEDAS", stock: 0, img: "https://i.postimg.cc/gjYGV4z5/601de701-a9b5-4bbf-8aa6-87b171349a64.jpg" },
+        { id: 6, name: "LUMPIA", stock: 0, img: "https://i.postimg.cc/ZYcbbkj9/38611567-5f9f-4899-9d33-cffa77b5e469.jpg" },
+        { id: 7, name: "KACANG ARAB", stock: 0, img: "https://i.postimg.cc/sDgV1n09/16ad7cba-62a3-48d4-a52c-25fe2f379b5e.jpg" },
+        { id: 8, name: "KACANG TELUR", stock: 0, img: "https://i.postimg.cc/nLXR3qKF/a380402e-538b-431d-bc8e-5b332b2fbe5f.jpg" },
+        { id: 9, name: "KERIPIK BALADO PADANG", stock: 0, img: "https://i.postimg.cc/7LprzWcc/fc5d75bb-8868-4c74-80b9-289bc86bb0c1.jpg" },
+        { id: 10, name: "KUE BAWANG PITA", stock: 0, img: "https://i.postimg.cc/RFdbqq3V/b9551c54-10c0-4d7c-84b4-2929f6f5ea38.jpg" },
+        { id: 11, name: "UNTIR UNTIR", stock: 0, img: "https://i.postimg.cc/3Rd6tFMx/09220392-ad87-478d-9fcf-0c67b1ba6cfb.jpg" },
+        { id: 12, name: "BASRENG DAUN JERUK", stock: 0, img: "https://i.postimg.cc/sxBMf8kX/3428ff40-8068-4717-baf3-0bc8ffe5ef7f.jpg" },
+        { id: 13, name: "KERIPIK SIBOLGA", stock: 0, img: "https://i.postimg.cc/jjf59hns/bb339866-ab21-4add-b6b9-fc425b13e4da.jpg" },
+        { id: 14, name: "BASRENG GEPENG BALADO", stock: 0, img: "https://i.postimg.cc/GhdhZfRM/9740f157-9408-492f-9bfe-1d63cd8b72e2.jpg" },
+        { id: 15, name: "KUPING GAJAH", stock: 0, img: "https://i.postimg.cc/XvRnxHxZ/4fa2a239-a816-4678-b4df-b324ef2814c8.jpg" },
+        { id: 16, name: "SEBLAK CAMPUR", stock: 0, img: "https://i.postimg.cc/mZ06kxkH/884d5066-640e-4d35-8b0c-a039d951b175.jpg" }
+    ];
+
+    let cart = {};
+
+    function init() {
+        const s = document.createElement('script');
+        s.src = `${scriptURL}?callback=handleData`;
+        document.body.appendChild(s);
+    }
+
+    function handleData(d) {
+        snackData.forEach(s => { 
+            if(d[s.name.toUpperCase()] !== undefined) s.stock = parseInt(d[s.name.toUpperCase()]); 
+        });
+        document.getElementById('loading').style.display = 'none';
+        render();
+    }
+
+    function render() {
+        const grid = document.getElementById('container-snack');
+        grid.innerHTML = '';
+        snackData.forEach(s => {
+            const soldOut = s.stock <= 0;
+            grid.innerHTML += `
+                <div class="card ${soldOut ? 'is-empty' : ''}">
+                    <div class="sold-out-overlay"><div class="so-text">SOLD OUT</div></div>
+                    <img src="${s.img}">
+                    <div class="card-info">
+                        <div class="card-name">${s.name}</div>
+                        <div class="stock-tag">STOCK: ${s.stock}</div>
+                        <div class="counter">
+                            <button class="btn-qty" onclick="changeQty(${s.id},-1)" ${soldOut ? 'disabled' : ''}>-</button>
+                            <span id="qty-${s.id}" style="font-weight:900; min-width:20px;">0</span>
+                            <button class="btn-qty" onclick="changeQty(${s.id},1)" ${soldOut ? 'disabled' : ''}>+</button>
                         </div>
                     </div>
-                    
-                    <div class="flex-1 w-full lg:pr-10">
-                        <span class="text-[10px] font-black px-3 py-1 bg-white/10 rounded-full text-blue-400 mb-4 inline-block uppercase tracking-widest">New Release</span>
-                        <h2 class="text-6xl font-black text-white italic uppercase mb-8 tracking-tighter leading-none">${track.title}</h2>
-                        
-                        <div class="glass-panel p-10 relative overflow-hidden">
-                            <div class="absolute top-0 right-0 p-4 opacity-10">
-                                <i class="fas fa-quote-right text-4xl text-white"></i>
-                            </div>
-                            <div class="lyrics-scroll text-base text-slate-300 font-medium italic">
-${track.lyrics}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            document.getElementById('display-area').innerHTML = html;
+                </div>`;
+        });
+    }
+
+    function changeQty(id, delta) {
+        let q = (cart[id] || 0) + delta;
+        if(q < 0 || q > (snackData[id].stock || 0)) return;
+        cart[id] = q;
+        document.getElementById(`qty-${id}`).innerText = q;
+        updateTotal();
+    }
+
+    function updateTotal() {
+        let total = 0; let list = [];
+        Object.keys(cart).forEach(id => {
+            if(cart[id] > 0) { total += cart[id] * 3; list.push(`${cart[id]}x ${snackData[id].name}`); }
+        });
+        document.getElementById('total-bar').style.display = total > 0 ? 'flex' : 'none';
+        document.getElementById('display-total').innerText = "$" + total.toFixed(2);
+        document.getElementById('summary').innerText = list.join(", ");
+    }
+
+    function openPayment() { 
+        document.getElementById('payment-area').style.display='block'; 
+        window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'}); 
+    }
+
+    function showQR(type) {
+        document.getElementById('qr-riel').style.display = 'none';
+        document.getElementById('qr-usd').style.display = 'none';
+        document.getElementById('btn-riel').classList.remove('active');
+        document.getElementById('btn-usd').classList.remove('active');
+        if(type === 'riel') {
+            document.getElementById('qr-riel').style.display = 'flex';
+            document.getElementById('btn-riel').classList.add('active');
+        } else {
+            document.getElementById('qr-usd').style.display = 'flex';
+            document.getElementById('btn-usd').classList.add('active');
         }
+    }
 
-        // Initialize with ASA
-        changeTrack('asa');
-    </script>
+    function sendToSpreadsheet() {
+        const nama = document.getElementById('nama-pembeli').value;
+        if(!nama) return alert("NAME IS REQUIRED!");
+        let list = []; let total = 0;
+        Object.keys(cart).forEach(id => { if(cart[id] > 0) { total += cart[id] * 3; list.push(`${cart[id]}x ${snackData[id].name}`); } });
+        if(list.length === 0) return alert("CHOOSE SNACK FIRST!");
+        const btn = document.getElementById('submit-btn');
+        btn.innerText = "SENDING TO ARMENIA..."; btn.disabled = true;
+        const params = new URLSearchParams();
+        params.append('nama', nama);
+        params.append('pesanan', list.join(", "));
+        params.append('total', "$" + total.toFixed(2));
+        fetch(`${scriptURL}?${params.toString()}`, { method: 'GET', mode: 'no-cors' })
+        .then(() => { alert("ORDER RECEIVED! STAY WARM!"); location.reload(); })
+        .catch(() => { location.reload(); });
+    }
+    init();
+</script>
 </body>
 </html>
